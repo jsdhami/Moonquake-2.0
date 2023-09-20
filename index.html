@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moonquake-2.0 | NASA Space App Challanges</title>
+  <style> body { margin: 0; } </style>
+  <script src="//unpkg.com/d3-array"></script>
+  <script src="//unpkg.com/d3-scale"></script>
+
+  <script src="//unpkg.com/globe.gl"></script>
+  <!--<script src="../../dist/globe.gl.js"></script>-->
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top bg-opacity-25">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <img src="logoosri.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+       <b style="color: white;">Moonquake-2.0</b>
+        </a>
+      <button class="navbar-toggler align-content-lg-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <br>
+        <br>
+        <ul class="navbar-nav me-2 mb-2 mb-lg-0 ">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#" style="color: white;">Home</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#" style="color: white;">Our Team</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#" style="color: white;">Theory</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#" style="color: white;">References</a>
+          </li>
+
+          <li class="nav-item dropdown" style="color: white;">
+            <a class="nav-link dropdown-toggle" style="color: white;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Features
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+
+          <!-- <li class="nav-item">
+            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          </li> -->
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#" style="color: white;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contact"><b>Contact Us</b></a>
+          </li>
+          <!-- <li>
+            <button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#contact">Contact Us</button>
+        
+          </li> -->
+          
+        </ul>
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#about">About Us</button>
+        
+      </div>
+    </div>
+  </nav>
+
+
+  <div id="globeViz"></div>
+  
+
+
+
+
+<div class="offcanvas offcanvas-bottom bg-body-tertiary bg-opacity-10" id="about">
+  <!-- <div class="offcanvas-header">
+  </div>   -->
+  <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-primary rounded-0 shadow-sm bg-body-tertiary bg-opacity-10" id="pillNav2" role="tablist" style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white);">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active rounded-5" id="home-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="true">Home</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link rounded-5" id="profile-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Profile</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link rounded-5" id="contact-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Contact</button>
+      </li>
+  </ul>
+  <!-- <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button> -->
+ 
+  
+</div>
+
+
+<!-- contact model start-->
+
+
+<!-- The Modal -->
+<div class="modal" id="contact">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-body-tertiary bg-opacity-50">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Contact Us</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+       
+        <form action="" method="post" id="product">
+          <div class="mb-3">
+            <label for="name" class="form-label"><b>Name:</b></label>
+            <input type="text" class="form-control bg-body-tertiary bg-opacity-50" id="email" placeholder="Enter Your Name" name="name">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label"><b>Email:</b></label>
+            <input type="email" class="form-control bg-body-tertiary bg-opacity-50" id="pwd" placeholder="Enter Your Email" name="email">
+          </div>
+          <label for="comment"><b>Message:</b></label>
+          <textarea class="form-control bg-body-tertiary bg-opacity-50" rows="5" id="comment" name="message" placeholder="Write your message.."></textarea>
+          <!-- <div class="form-check mb-3">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" name="remember"> Remember me
+            </label>
+          </div> -->
+          <br>
+          <button type="submit" class="btn btn-outline-primary">Submit</button>
+        </form>
+
+      </div>
+
+      <!-- Modal footer -->
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div> -->
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- contact model end -->
+
+<!-- main button to call model -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contact"> </button>
+ -->
+
+
+
+
+
+<!-- <div class="container-fluid mt-3">
+  <h3>Bottom Offcanvas</h3>
+  <p>The .offcanvas-bottom class positions the offcanvas at the bottom of the page.</p>
+  <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
+    Toggle Bottom Offcanvas
+  </button>
+</div> -->
+
+
+
+
+
+
+
+<script>
+  const colorScale = d3.scaleOrdinal(['orangered', 'mediumblue', 'darkgreen', 'yellow']);
+
+  const labelsTopOrientation = new Set(['Apollo 12', 'Luna 2', 'Luna 20', 'Luna 21', 'Luna 24', 'LCROSS Probe']); // avoid label collisions
+
+  const elem = document.getElementById('globeViz');
+  const moon = Globe()
+    .globeImageUrl('./lunar_surface.jpg')
+    .bumpImageUrl('./lunar_bumpmap.jpg')
+    .backgroundImageUrl('//unpkg.com/three-globe/example/img/night-sky.png')
+    .showGraticules(true)
+    .showAtmosphere(false) // moon has no atmosphere
+    .labelText('label')
+    .labelSize(1.7)
+    .labelDotRadius(0.4)
+    .labelDotOrientation(d => labelsTopOrientation.has(d.label) ? 'top' : 'bottom')
+    .labelColor(d => colorScale(d.agency))
+    .labelLabel(d => `
+        <div><b>${d.label}</b></div>
+        <div>${d.agency} - ${d.program} Program</div>
+        <div>Landing on <i>${new Date(d.date).toLocaleDateString()}</i></div>
+      `)
+    .onLabelClick(d => window.open(d.url, '_blank'))
+    (elem);
+
+  fetch('./moon_landings.json').then(r => r.json()).then(landingSites => {
+    moon.labelsData(landingSites);
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
